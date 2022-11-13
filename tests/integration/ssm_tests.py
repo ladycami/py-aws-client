@@ -13,7 +13,7 @@ class SsmTestCase(TestCase):
 
     def test_get_parameter(self):
         response = self.ssm.get_parameter(
-            parameter_name='/systems/account_id',
+            parameter_name='/discord/mythal/token',
             with_decryption=True
         )
 

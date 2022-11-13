@@ -1,5 +1,5 @@
 import boto3
-from typing import Dict
+from typing import Dict, List, Optional
 from botocore.exceptions import ClientError
 
 
@@ -32,6 +32,23 @@ class SecretsManager(object):
         """
         response = self.client.get_secret_value(
             SecretId=secret_name,
+        )
+
+        return response
+
+    def create_secret(self, secret_name: str, secret_string: str, tags: Optional[List[dict]]=None):
+        """
+        Creates and stores new secret in AWS secrets manager
+        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.create_secret
+        :param secret_name:
+        :param secret_string:
+        :param tags:
+        :return:
+        """
+        response = self.client.create_secret(
+            Name=secret_name,
+            SecretString=secret_string,
+            Tags=tags
         )
 
         return response

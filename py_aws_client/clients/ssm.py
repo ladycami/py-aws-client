@@ -37,8 +37,9 @@ class Ssm(object):
             Name=parameter_name,
             WithDecryption=with_decryption
         )
+        param_value = response.get('Parameter').get('Value')
 
-        return response
+        return param_value
 
     def put_parameter(self, parameter_name: str, parameter_value: str) -> Dict[str, any]:
         """
